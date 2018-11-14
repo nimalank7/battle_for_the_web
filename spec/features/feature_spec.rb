@@ -1,17 +1,24 @@
+require_relative "./web_helpers.rb"
+
 feature 'Testing infrastructure' do
 
   scenario 'Can allow players to enter their name and see them' do
-    visit('/players')
-    fill_in 'player_1', with: 'Bob'
-    fill_in 'player_2', with: 'James'
-    click_button "Submit"
-    expect(page).to have_content 'Bob and James' #
+    sign_in_and_play
+    expect(page).to have_content 'Bob v James'
   end
   scenario 'View Player 2 Hit Points' do
-    visit('/')
-    fill_in 'player_1', with: 'Bob'
-    fill_in 'player_2', with: 'James'
-    click_button "Submit"
-    expect(page).to have_content 'James: 100HP' #
+    sign_in_and_play
+    expect(page).to have_content 'James: 100HP'
+  end
+  scenario 'Attacks Jill and returns confirmation' do
+    sign_in_and_play
+    click_button "Attack"
+    expect(page).to have_content 'Bob attacked James!'
+  end
+  scenario 'Return to homepage after attacking' do
+    sign_in_and_play
+    click_button "Attack"
+    click_button "Return to play"
+    expect(page).to have_content 'James: 90HP'
   end
 end
