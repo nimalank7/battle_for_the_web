@@ -1,23 +1,18 @@
 require 'Player'
 
 describe Player do
-  let(:jack) {Player.new("Jack")}
-  let(:jill) {Player.new("Jill")}
+  let(:bob) {Player.new("Bob")}
+  let(:james) {Player.new("James")}
 
   it "returns its own name" do
-    expect(jack.name).to eq "Jack"
+    expect(bob.name).to eq "Bob"
   end
   it "sets hit points to 100" do
-    expect(jill.hit_points).to eq 100
+    expect(james.hit_points).to eq Player::TOTAL_HIT_POINTS
   end
 
   it "allows hit points to be modified to 90" do
-    jill.hit_points = 90
-    expect(jill.hit_points).to eq 90
-  end
-
-  it "attacks Jill and deducts HP by 10 leaving 90" do
-    jack.attack(jill)
-    expect(jill.hit_points).to eq 90
+    james.hit_points = 90
+    expect(james.hit_points).to eq 90
   end
 end
