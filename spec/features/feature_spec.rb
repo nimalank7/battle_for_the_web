@@ -21,4 +21,11 @@ feature 'Testing infrastructure' do
     click_button "Return to play"
     expect(page).to have_content 'James: 90HP'
   end
+  scenario "After Bob attacks James attacks and both have 90 HP" do
+    sign_in_and_play()
+    click_button 'Attack'
+    click_button 'Return to play'
+    click_button 'Attack'
+    expect(page).to have_text("Bob: 90HP")
+  end
 end

@@ -20,7 +20,12 @@ class Battle < Sinatra::Base
   end
 
   get '/attack' do
-    $game.attack($game.player_2)
+    @attacker = $game.attacker.name
+    being_attacked = $game.being_attacked
+    $game.attack($game.being_attacked)
+    @being_attacked_name = being_attacked.name
+    @being_attacked_hit_points = being_attacked.hit_points
+
     erb(:attack)
   end
 
