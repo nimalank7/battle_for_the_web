@@ -16,10 +16,9 @@ describe Game do
     expect(game.player_2.name).to eq "James"
   end
   it "attacks Bob and deducts 10 hitpoints from James" do
-    allow(james).to receive(:hit_points=) {90}
-    allow(james).to receive(:hit_points) {90}
+    expect(james).to receive(:hit_points=) {90}
     game.attack(game.player_2)
-    expect(game.player_2.hit_points).to eq 90
+
   end
 
   it "player 1 attack on player 2 reduces hitpoints" do
