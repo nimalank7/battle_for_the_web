@@ -22,11 +22,16 @@ class Battle < Sinatra::Base
   get '/attack' do
     @attacker = $game.attacker.name
     being_attacked = $game.being_attacked
-    $game.attack($game.being_attacked)
+    $game.attack(being_attacked)
     @being_attacked_name = being_attacked.name
     @being_attacked_hit_points = being_attacked.hit_points
-
+    if @being_attacked_hit_points == 0
+      redirect to('/lost')
+    end
     erb(:attack)
+  end
+  get '/lost' do
+    erb(:lost)
   end
 
   run! if app_file == $0

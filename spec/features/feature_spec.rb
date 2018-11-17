@@ -28,4 +28,13 @@ feature 'Testing infrastructure' do
     click_button 'Attack'
     expect(page).to have_text("Bob: 90HP")
   end
+  scenario "You lose!" do
+    sign_in_and_play()
+    18.times do
+      click_button 'Attack'
+      click_button 'Return to play'
+    end
+    click_button 'Attack'
+    expect(page).to have_text("You have lost!")
+  end
 end
