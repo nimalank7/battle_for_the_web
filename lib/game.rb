@@ -18,6 +18,14 @@ class Game
     swap_being_attacker
   end
 
+  def self.new_game(name_1, name_2, player_1_class = Player, player_2_class = Player)
+    @individual_game = Game.new("Bob", "James", player_1_class, player_2_class)
+  end
+
+  def self.instance
+    @individual_game
+  end
+
   private
   def swap_being_attacked
     player_to_attack = [player_1, player_2].select do |player|

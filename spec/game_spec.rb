@@ -12,6 +12,11 @@ describe Game do
     expect(game.player_1.name).to eq "Bob"
   end
 
+  it "stores a Game instance in @individual game" do
+    Game.new_game("Bob", "James", player_1_class, player_2_class)
+    expect(Game.instance.instance_of? Game).to eq true
+  end
+
   it "creates a player called James and stores it in @player_2" do
     expect(game.player_2.name).to eq "James"
   end
